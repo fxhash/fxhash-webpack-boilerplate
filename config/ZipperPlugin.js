@@ -1,9 +1,20 @@
 const path = require("path")
 const AdmZip = require("adm-zip")
 
+// get the name of the base directory
+let projectName = path.basename(path.resolve('.'))
+
+// replace spaces with underscores
+projectName = projectName.replace(/\s/g, '-')
+
+// lowercase the name
+projectName = projectName.toLowerCase()
+
+// replace characters with URL compatible ones
+projectName = encodeURIComponent(projectName)
 
 const defaultOptions = {
-  outputPath: path.resolve(__dirname, "../dist-zipped/project.zip")
+  outputPath: path.resolve(__dirname, `../dist-zipped/${projectName}.zip`)
 }
 
 /**
